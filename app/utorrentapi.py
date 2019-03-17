@@ -194,18 +194,22 @@ class UTorrentAPI(object):
                 if response.status_code == 200:
                     file = response.json()
                     print('file added')
+                    return True
                 else:
                     print(response.status_code)
+                    return False
             else:
                 print('file not found')
+                return False
 
-            pass
         except requests.ConnectionError as error:
             print(error)
+            return False
         except Exception as e:
             print(e)
+            return False
 
-        return file
+        # return file
 
     def add_url(self, fiel_path):
         path = 'action=add-url&s=%s' % (fiel_path)
@@ -216,18 +220,21 @@ class UTorrentAPI(object):
         try:
             if status == 200:
                 files = response.json()
+                return True
             else:
                 print(response.status_code)
+                return False
 
-            pass
         except requests.ConnectionError as error:
             print(error)
+            return False
         except Exception as e:
             print(e)
+            return False
 
-        print(files)
+        # print(files)
 
-        return files
+        # return files
 
 
 # private section -->
